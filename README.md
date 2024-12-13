@@ -7,7 +7,7 @@ This repository contains steps to set up an AWS EC2 instance, install Ansible an
 
 ## Steps
 
-### Step 1: Create AWS EC2 t2.medium Instance
+Step 1: Create AWS EC2 t2.medium Instance
 1. Log in to your AWS Management Console.
 2. Navigate to the EC2 Dashboard.
 3. Click on "Launch Instance".
@@ -16,7 +16,7 @@ This repository contains steps to set up an AWS EC2 instance, install Ansible an
 6. Configure instance details, add storage, and configure security groups as needed.
 7. Review and launch the instance.
 
-### Step 2: Install Ansible
+Step 2: Install Ansible
 1. SSH into your EC2 instance.
 2. Update the package list:
    ```bash
