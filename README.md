@@ -1,13 +1,10 @@
-Sure! Here's a `README.md` file for your GitHub repository:
-
-```markdown
 # AWS EC2 Setup and Configuration
 
 This repository contains steps to set up an AWS EC2 instance, install Ansible and Terraform, create an AWS IAM user, and configure AWS CLI.
 
 ## Steps
 
-Step 1: Create AWS EC2 t2.medium Instance
+### Step 1: Create AWS EC2 t2.medium Instance
 1. Log in to your AWS Management Console.
 2. Navigate to the EC2 Dashboard.
 3. Click on "Launch Instance".
@@ -16,7 +13,7 @@ Step 1: Create AWS EC2 t2.medium Instance
 6. Configure instance details, add storage, and configure security groups as needed.
 7. Review and launch the instance.
 
-Step 2: Install Ansible
+### Step 2: Install Ansible
 1. SSH into your EC2 instance.
 2. Update the package list:
    ```bash
@@ -29,17 +26,24 @@ Step 2: Install Ansible
 
 ### Step 3: Install Terraform
 1. SSH into your EC2 instance.
-2. Install dependencies:
+2. Install dependencies: (Ensure that your system is up to date and you have installed the gnupg, software-properties-common, and curl packages installed)
    ```bash
-   sudo apt-get install -y gnupg software-properties-common curl
+   sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
    ```
-3. Add the HashiCorp GPG key:
+3. Install the HashiCorp GPG key :
    ```bash
-   curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+   wget -O- https://apt.releases.hashicorp.com/gpg | \
+   gpg --dearmor | \
+   sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+
    ```
-4. Add the HashiCorp Linux repository:
+4. Verify the key's fingerprint.:
    ```bash
    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+   gpg --no-default-keyring \
+   --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+   --fingerprint
+
    ```
 5. Update the package list and install Terraform:
    ```bash
